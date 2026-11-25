@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    name: ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Minimal job until apps/api and apps/web exist.
+      # Replace / extend with api + web jobs (lint, test, build) once the monorepo is set up.
+      - name: Verify repository structure
+        run: |
+          test -f .gitignore
+          test -f docs/ci-cd.md
+          echo "CI OK — base structure present."
