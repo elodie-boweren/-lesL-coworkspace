@@ -37,6 +37,12 @@ Once the monorepo is in place (`apps/api`, `apps/web`):
 
 Until the apps exist, the workflow ships a minimal `ci` job (checkout + structure check) so **green checks** can already be required on PRs.
 
+### Secrets scan (Gitleaks)
+
+File: [`.github/workflows/gitleaks.yml`](../.github/workflows/gitleaks.yml) — see [secrets.md](./secrets.md).
+
+Runs in parallel with `ci`. Require the `gitleaks` check in the branch ruleset alongside `ci`.
+
 ### Failure rule
 
 If a job fails, the PR cannot be merged (see §3). Fix on the branch and push again: CI re-runs.
@@ -55,7 +61,7 @@ Configure on GitHub:
 | Require a pull request before merging | **Yes** | Blocks direct pushes |
 | Required approvals | **1** | Another teammate reviews |
 | Require status checks to pass | **Yes** | Green CI before merge |
-| Required status checks | job(s) from the `CI` workflow (e.g. `ci`, later `api` / `web`) | Checks must be green |
+| Required status checks | job(s) from CI / Gitleaks (e.g. `ci`, `gitleaks`, later `api` / `web`) | Checks must be green |
 | Require conversation resolution | Optional | Close review threads before merge |
 | Do not allow bypassing the above settings | **Yes** (if possible) | Admins follow the same rule |
 
