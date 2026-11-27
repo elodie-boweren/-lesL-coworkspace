@@ -29,6 +29,7 @@ flowchart LR
   Member -->|View floor plan| App
   Member -->|Manage profile| App
   Member -->|Cancel or edit booking| App
+  Member --->|Delete account| App
 
   Admin -->|Approve registration| App
   Admin -->|Activate / deactivate member| App
@@ -58,6 +59,7 @@ flowchart LR
   Member --> UC8[Edit or cancel booking]
   Member --> UC9[View my bookings]
   Member --> UC10[Update profile]
+  Member --> UC11[Delete account]
 
   UC1 -.-> App
   UC2 -.-> App
@@ -69,6 +71,7 @@ flowchart LR
   UC8 -.-> App
   UC9 -.-> App
   UC10 -.-> App
+  UC11 -.-> App
 ```
 
 | Use case | Goal | Preconditions | Notes |
@@ -83,6 +86,7 @@ flowchart LR
 | Edit or cancel booking | Change or free a slot | Owns the booking ; within allowed window | Triggers cancellation email |
 | View my bookings | See history / upcoming | Logged in | |
 | Update profile | Change personal data | Logged in | Photo = optional bonus |
+| Delete account | Remove all personal info | Logged in | Account archived for set amount of time before permanent deletion (RGPD)
 
 ---
 
@@ -157,7 +161,7 @@ flowchart LR
 
 | Use cases (group) | Bounded context |
 |---|---|
-| Register, log in, reset password, profile, approve / activate member | Identity & Access |
+| Register, log in, reset password, profile, approve / activate member, delete account | Identity & Access |
 | Floor plan, CRUD spaces, equipment | Space Catalog |
 | Book, recur, edit, cancel, my bookings, conflicts | Booking (core) |
 | All email / reminder flows | Notifications |
